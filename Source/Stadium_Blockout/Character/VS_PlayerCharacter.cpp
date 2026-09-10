@@ -22,6 +22,8 @@ AVS_PlayerCharacter::AVS_PlayerCharacter()
 	bUseControllerRotationYaw = true;
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;
+	
+	
 
 	SpringArm->bUsePawnControlRotation = true;
 }
@@ -30,7 +32,8 @@ AVS_PlayerCharacter::AVS_PlayerCharacter()
 void AVS_PlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	WeaponMesh->SetVisibility(false); 
+	bWeaponEquipped = false;
 }
 
 // Called every frame

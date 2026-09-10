@@ -20,7 +20,7 @@ AVS_BaseCharacter::AVS_BaseCharacter()
 
 	WeaponMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("WeaponMesh"));
 	WeaponMesh->SetupAttachment(GetMesh(), FName("WeaponSocket")); 
-	WeaponMesh->SetVisibility(false); 
+
 }
 
 UAbilitySystemComponent* AVS_BaseCharacter::GetAbilitySystemComponent() const
@@ -122,19 +122,13 @@ void AVS_BaseCharacter::NotifyStartSweep()
 {
 	if (ASC)
 	{
-		TArray<FGameplayAbilitySpec*> Specs;
-		ASC->GetActivatableGameplayAbilitySpecsByAllMatchingTags(FGameplayTagContainer(FGameplayTag::RequestGameplayTag(FName("Ability.Attack"))), Specs);
-		for (FGameplayAbilitySpec* Spec : Specs)
+		if (WeaponAbilityClass)
 		{
-			if (Spec->IsActive())
+			UGA_Weapon* AbilityInstance = Cast<UGA_Weapon>(WeaponAbilityClass);
+			if (AbilityInstance)
 			{
-				for (UGameplayAbility* Instance : Spec->GetAbilityInstances())
-				{
-					if (UGA_Weapon* WeaponAbility = Cast<UGA_Weapon>(Instance))
-					{
-						WeaponAbility->StartSweep();
-					}
-				}
+				AbilityInstance->StartSweep();
+				UE_LOG(LogTemp, Warning, TEXT("StartSweep"));
 			}
 		}
 	}
@@ -144,19 +138,13 @@ void AVS_BaseCharacter::NotifyResetMeleeAttack()
 {
 	if (ASC)
 	{
-		TArray<FGameplayAbilitySpec*> Specs;
-		ASC->GetActivatableGameplayAbilitySpecsByAllMatchingTags(FGameplayTagContainer(FGameplayTag::RequestGameplayTag(FName("Ability.Attack"))), Specs);
-		for (FGameplayAbilitySpec* Spec : Specs)
+		if (WeaponAbilityClass)
 		{
-			if (Spec->IsActive())
+			UGA_Weapon* AbilityInstance = Cast<UGA_Weapon>(WeaponAbilityClass);
+			if (AbilityInstance)
 			{
-				for (UGameplayAbility* Instance : Spec->GetAbilityInstances())
-				{
-					if (UGA_Weapon* WeaponAbility = Cast<UGA_Weapon>(Instance))
-					{
-						WeaponAbility->ResetMeleeAttack();
-					}
-				}
+				AbilityInstance->ResetMeleeAttack();
+				UE_LOG(LogTemp, Warning, TEXT("Reset Melee Attack"))
 			}
 		}
 	}

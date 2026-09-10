@@ -35,5 +35,10 @@ void UANS_ArcSweep::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimSequenceBas
 	if (Character)
 	{
 		Character->NotifyResetMeleeAttack();
+		UE_LOG(LogTemp, Warning, TEXT("Notified Reset Melee Attack"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Cast Failed in Notify End"));
 	}
 }

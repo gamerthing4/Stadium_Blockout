@@ -6,7 +6,6 @@
 #include "GameFramework/Character.h"
 #include "Stadium_Blockout/Interfaces/DamageInterface.h"
 #include "AbilitySystemInterface.h"
-#include "Components/TimelineComponent.h"
 #include "VS_BaseCharacter.generated.h"
 
 class UVS_AttributeSet;
@@ -31,7 +30,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UVS_AttributeSet* AttributeSet;
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Combat")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	UStaticMeshComponent* WeaponMesh;
 	
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;

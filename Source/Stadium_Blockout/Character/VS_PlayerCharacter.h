@@ -44,4 +44,7 @@ public:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	bool bWeaponEquipped;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	FName SwordEquipSocketName;
 };
